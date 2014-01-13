@@ -1,0 +1,4 @@
+46f433176bc0b3d2, WinRAR 4.20 (64-bit)
+611f29e78bdb9b21, Sibelius 7.0.0.23
+ff103e2cc310d0d, Adobe Reader 11.0.3
+969252ce11249fdd, Firefox 25.0
