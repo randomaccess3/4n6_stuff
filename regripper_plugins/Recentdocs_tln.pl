@@ -2,6 +2,7 @@
 # recentdocs_tln.pl
 # Plugin for Registry Ripper 
 # Parses RecentDocs keys/values in NTUSER.DAT into a timeline based on the MRUListEx 
+# The times are printed in UTC in Unix epoch format, line 94/95 are interchangeable to modify the output format of the date.
 #
 # This script is a modified version of Harlen Carvey's recentdocs plugin. 
 # This is an automated version of the process shown by Dan Pullega
@@ -12,6 +13,7 @@
 
 
 # Change history
+#	 20140224 - Fixed bug that took the lowest MRUList item, rather than the first
 #	 20140222 - Modified to combine last write times into MRUListEx
 #    20100405 - Updated to use Encode::decode to translate strings
 #    20090115 - Minor update to keep plugin from printing terminating
@@ -34,7 +36,7 @@ my %config = (hive          => "NTUSER\.DAT",
               hasDescr      => 0,
               hasRefs       => 0,
               osmask        => 22,
-              version       => 20140222);
+              version       => 20140224);
 
 sub getShortDescr {
 	return "Gets contents of user's RecentDocs key and place last write times into timeline";	
@@ -87,10 +89,12 @@ sub pluginmain {
 					}
 					
 					my @list = split(/,/,$rdvals{$tag});
+					my ($lastAccessed,@rest) = split(',', $rdvals{$tag});
 					
 					my $d = $s->get_timestamp();    #unix time
 					#my $d = gmtime($s->get_timestamp()); #normalised time
-					my $v = $rdvals{0};
+					
+					my $v = $rdvals{$lastAccessed};
 					$hash{ $v } = $d;
 					::rptMsg($v.": ".$hash{$v});    
 					#::rptMsg($tag." = ".$rdvals{$tag});
@@ -107,8 +111,8 @@ sub pluginmain {
 			::rptMsg($key_path." has no subkeys.");
 		}
 
-
-
+::rptMsg("");
+::rptMsg("The last write times are now placed in line with the values in the MRUListEx value ");
 
 
 
