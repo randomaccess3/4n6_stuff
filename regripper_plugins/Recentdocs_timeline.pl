@@ -13,7 +13,7 @@
 
 
 # Change history
-#	20161115 - rename plugin
+#	20161115 - rename plugin and updated output to include human-readable date
 #	 20140224 - Fixed bug that took the lowest MRUList item, rather than the first
 #	 20140222 - Modified to combine last write times into MRUListEx
 #    20100405 - Updated to use Encode::decode to translate strings
@@ -37,7 +37,7 @@ my %config = (hive          => "NTUSER\.DAT",
               hasDescr      => 0,
               hasRefs       => 0,
               osmask        => 22,
-              version       => 20140224);
+              version       => 20161115);
 
 sub getShortDescr {
 	return "Gets contents of user's RecentDocs key and place last write times into timeline";	
@@ -141,7 +141,7 @@ sub pluginmain {
 			my @list = split(/,/,$rdvals{$tag});
 			foreach my $i (@list) {
 				if($hash{$rdvals{$i}}){
-					::rptMsg("  ".$i." = ".$rdvals{$i}."\t\t".$hash{$rdvals{$i}});
+					::rptMsg("  ".$i." = ".$rdvals{$i}."\t\t".gmtime($hash{$rdvals{$i}}));
 				}
 				else{
 					::rptMsg("  ".$i." = ".$rdvals{$i})
