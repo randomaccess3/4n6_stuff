@@ -13,6 +13,7 @@
 
 
 # Change history
+#	20161115 - rename plugin
 #	 20140224 - Fixed bug that took the lowest MRUList item, rather than the first
 #	 20140222 - Modified to combine last write times into MRUListEx
 #    20100405 - Updated to use Encode::decode to translate strings
