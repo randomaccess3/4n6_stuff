@@ -1,5 +1,5 @@
 #-----------------------------------------------------------
-# recentdocs_tln.pl
+# recentdocs_timeline.pl
 # Plugin for Registry Ripper 
 # Parses RecentDocs keys/values in NTUSER.DAT into a timeline based on the MRUListEx 
 # The times are printed in UTC in Unix epoch format, line 94/95 are interchangeable to modify the output format of the date.
@@ -27,7 +27,7 @@
 # 
 # copyright 2010 Quantum Analytics Research, LLC
 #-----------------------------------------------------------
-package recentdocs_tln;
+package recentdocs_timeline;
 use strict;
 use Encode;
 
