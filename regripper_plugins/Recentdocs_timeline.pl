@@ -13,7 +13,8 @@
 
 
 # Change history
-#	20161115 - rename plugin and updated output to include human-readable date
+#	 20161116 - fixed presentation of data and added code to deal with entries with no values
+#	 20161115 - rename plugin and updated output to include human-readable date
 #	 20140224 - Fixed bug that took the lowest MRUList item, rather than the first
 #	 20140222 - Modified to combine last write times into MRUListEx
 #    20100405 - Updated to use Encode::decode to translate strings
@@ -37,7 +38,7 @@ my %config = (hive          => "NTUSER\.DAT",
               hasDescr      => 0,
               hasRefs       => 0,
               osmask        => 22,
-              version       => 20161115);
+              version       => 20161116);
 
 sub getShortDescr {
 	return "Gets contents of user's RecentDocs key and place last write times into timeline";	
@@ -97,7 +98,15 @@ sub pluginmain {
 					
 					my $v = $rdvals{$lastAccessed};
 					$hash{ $v } = $d;
-					::rptMsg($v.": ".$hash{$v});    
+					
+					#This section was added after noticing that sometimes keys have no values in them. They still have names and dates/times
+					if ($v eq ""){
+						::rptMsg(gmtime($hash{$v})."\t\t:\tNO VALUES - CHECK KEY MANUALLY");
+					}
+					else{
+						::rptMsg(gmtime($hash{$v})."\t\t:\t".$v);
+					}
+					
 					#::rptMsg($tag." = ".$rdvals{$tag});
 					#foreach my $i (@list) {
 					#	::rptMsg("  ".$i." = ".$rdvals{$i});
@@ -141,10 +150,10 @@ sub pluginmain {
 			my @list = split(/,/,$rdvals{$tag});
 			foreach my $i (@list) {
 				if($hash{$rdvals{$i}}){
-					::rptMsg("  ".$i." = ".$rdvals{$i}."\t\t".gmtime($hash{$rdvals{$i}}));
+					::rptMsg("\t".gmtime($hash{$rdvals{$i}})."\t\t".$i." = ".$rdvals{$i});
 				}
 				else{
-					::rptMsg("  ".$i." = ".$rdvals{$i})
+					::rptMsg("\t\t\t\t\t".$i." = ".$rdvals{$i})
 				}
 			}
 			::rptMsg("");
