@@ -5,12 +5,13 @@
 # Blog: thisweekin4n6.wordpress.com
 
 # InstallDFVFS
-# version 0.04
+# version 0.05
 
 # 0.01 - Initial commit
 # 0.02 - Fix error in downloading x64 packages
 # 0.03 - add comment for requiring version 1.57, adjusted python call to avoid path issues
 # 0.04 - 1.57 of Archive::Zip isn't required, added additional code for dealing with unicode taken from perlmonks. This script needs Win32::Unicode, which occasionally fails the tests on install. Install using cpan -f Win32::Unicode.
+# 0.05 - updated links
 
 # This assumes that Python2.7 is installed
 
@@ -291,8 +292,8 @@ print "\nPython Architecture is $pythonarch\n";
 				
 #download sha256sums to determine latest version of each package
 my $packageURL;
-$packageURL = "https://raw.githubusercontent.com/log2timeline/l2tbinaries/master/win32" if ($pythonarch eq "x32");
-$packageURL = "https://raw.githubusercontent.com/log2timeline/l2tbinaries/master/win64" if  ($pythonarch eq "x64");	
+$packageURL = "https://github.com/log2timeline/l2tbinaries/raw/master/win32" if ($pythonarch eq "x32");
+$packageURL = "https://github.com/log2timeline/l2tbinaries/raw/master/win64" if  ($pythonarch eq "x64");	
 my $packagelisting = "SHA256SUMS";
 
 #print "$packageURL\n";
