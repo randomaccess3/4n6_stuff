@@ -1,0 +1,1 @@
+'["' + $((get-childitem -include "*.DAT", "SAM", "SYSTEM", "SOFTWARE", "SECURITY" -Recurse -Force) -replace('\\', '\\') -join '","')+'"]' > reg.re_proj

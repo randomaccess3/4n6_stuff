@@ -1,0 +1,1 @@
+'["' + $((get-childitem -include "*.csv", "*.xlsx" -Recurse) -replace('\\', '\\') -join '","')+'"]' > output.tle_sess
