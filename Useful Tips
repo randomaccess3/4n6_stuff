@@ -1,8 +1,8 @@
-Useful Tips
+# Useful Tips
 
 =========================================================================================================
 
-SQlite3
+## SQlite3
 
 Dump a blob into a file
 sqlite3 database "SELECT writefile('outputFile', heading) from table where row_id = 1"
@@ -11,3 +11,11 @@ Dump a blob to hex in the terminal
 sqlite3 database "select hex(heading) from table where row_id=1"
 
 =========================================================================================================
+
+## Windows File System Commands
+
+* List permissions on a file
+`icacls "filename"` 
+
+* Query file system information
+`fsutil`
