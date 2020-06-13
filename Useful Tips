@@ -19,3 +19,8 @@ sqlite3 database "select hex(heading) from table where row_id=1"
 
 * Query file system information
 `fsutil`
+
+=========================================================================================================
+
+Recmd (https://dfirtnt.wordpress.com/2020/06/09/find-evil-in-5-easy-steps-part2/)
+RECmd.exe --f  "C:\Temp\Cases\inc123\files\C\users\user1\NTUSER.DAT" --regex --sv "(\\programdata\\.+\.exe|\\temp\\.+\.exe|\\users\\.+\.exe)"
